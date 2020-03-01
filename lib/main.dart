@@ -66,7 +66,7 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
       print("Rebuilding");
       return ListTile(
         title: Text(item.sender),
-        subtitle: Text(last_data.values[cont2++ % 8]),
+        subtitle: Text(last_data.values[cont2 % 8][cont2++ / 8]),
       );
     }
   }
@@ -108,30 +108,72 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
 }
 
 class SensorsData {
-  final String temp,
-      indicated_airspeed,
-      true_airspeed,
-      humidity,
-      compass,
-      lat,
-      long,
-      alt;
+  final String temp[3],
+      indicated_airspeed[3],
+      true_airspeed[3],
+      humidity[3],
+      compass[3],
+      lat[3],
+      long[3],
+      alt[3],
+      inversion;
 
-  final List<String> values;
+  final List<String[3]> values;
 
   SensorsData(this.temp, this.indicated_airspeed, this.true_airspeed,
       this.humidity, this.compass, this.lat, this.long, this.alt, this.values);
 
   factory SensorsData.fromJson(Map<String, dynamic> json) {
     // json = json['results'][0];
-    String temp = json['temp'] != null ? json['temp'] : "Nenhum valor lido ainda 2";
-    String indicated_airspeed = json['indicated_airspeed'] != null ? json['indicated_airspeed'] : "Nenhum valor lido ainda";
-    String true_airspeed = json['true_airspeed'] != null ? json['true_airspeed'] : "Nenhum valor lido ainda";
-    String humidity = json['humidity'] != null ? json['humidity'] : "Nenhum valor lido ainda";
-    String compass = json['compass'] != null ? json['compass'] : "Nenhum valor lido ainda";
-    String lat = json['lat'] != null ? json['lat'] : "Nenhum valor lido ainda2";
-    String long = json['long'] != null ? json['long'] : "Nenhum valor lido ainda";
-    String alt = json['alt'] != null ? json['alt'] : "Nenhum valor lido ainda";
+    String temp[3];
+
+    temp[0] = json['temperature_0'] != null ? json['temperature_0'] : "Nenhum valor lido ainda";
+    temp[1] = json['temperature_1'] != null ? json['temperature_1'] : "Nenhum valor lido ainda";
+    temp[2] = json['temperature_2'] != null ? json['temperature_2'] : "Nenhum valor lido ainda";
+
+    String indicated_airspeed[3];
+
+    indicated_airspeed[0] = json['indicated_airspeed_0'] != null ? json['indicated_airspeed_0'] : "Nenhum valor lido ainda";
+    indicated_airspeed[1] = json['indicated_airspeed_1'] != null ? json['indicated_airspeed_1'] : "Nenhum valor lido ainda";
+    indicated_airspeed[2] = json['indicated_airspeed_2'] != null ? json['indicated_airspeed_2'] : "Nenhum valor lido ainda";
+
+    String true_airspeed[3];
+
+    true_airspeed[0] = json['true_airspeed_0'] != null ? json['true_airspeed_0'] : "Nenhum valor lido ainda";
+    true_airspeed[1] = json['true_airspeed_1'] != null ? json['true_airspeed_1'] : "Nenhum valor lido ainda";
+    true_airspeed[2] = json['true_airspeed_2'] != null ? json['true_airspeed_2'] : "Nenhum valor lido ainda";
+
+    String humidity[3];
+
+    humidity[0] = json['humidity_0'] != null ? json['humidity_0'] : "Nenhum valor lido ainda";
+    humidity[1] = json['humidity_1'] != null ? json['humidity_1'] : "Nenhum valor lido ainda";
+    humidity[2] = json['humidity_2'] != null ? json['humidity_2'] : "Nenhum valor lido ainda";
+
+    String compass[3];
+
+    compass[0] = json['compass_0'] != null ? json['compass_0'] : "Nenhum valor lido ainda";
+    compass[1] = json['compass_1'] != null ? json['compass_1'] : "Nenhum valor lido ainda";
+    compass[2] = json['compass_2'] != null ? json['compass_2'] : "Nenhum valor lido ainda";
+
+    String lat[3];
+
+    lat[0] = json['lat_0'] != null ? json['lat_0'] : "Nenhum valor lido ainda";
+    lat[1] = json['lat_1'] != null ? json['lat_1'] : "Nenhum valor lido ainda";
+    lat[2] = json['lat_2'] != null ? json['lat_2'] : "Nenhum valor lido ainda";
+
+    String long[3];
+
+    long[0] = json['long_0'] != null ? json['long_0'] : "Nenhum valor lido ainda";
+    long[1] = json['long_1'] != null ? json['long_1'] : "Nenhum valor lido ainda";
+    long[2] = json['long_2'] != null ? json['long_2'] : "Nenhum valor lido ainda";
+
+    String alt[3];
+
+    alt[0] = json['alt_0'] != null ? json['alt_0'] : "Nenhum valor lido ainda";
+    alt[1] = json['alt_1'] != null ? json['alt_1'] : "Nenhum valor lido ainda";
+    alt[2] = json['alt_2'] != null ? json['alt_2'] : "Nenhum valor lido ainda";
+
+
     return SensorsData(temp, indicated_airspeed, true_airspeed, humidity,
         compass, lat, long, alt, [temp, indicated_airspeed, true_airspeed, humidity,
           compass, lat, long, alt]);
