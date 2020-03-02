@@ -57,7 +57,7 @@ class _Helper extends State<Helper> {
                 "  4. Arraste para baixo na tela de dados para atualizar os dados.",
                   style: TextStyle(
                   fontSize: 18,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Oxanium',
                   color: Colors.white,
                   fontWeight: FontWeight.bold
                 ),

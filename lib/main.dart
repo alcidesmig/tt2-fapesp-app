@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Exemplo Drawer',
       theme: ThemeData(
-        primaryColor: Colors.black, fontFamily: 'Roboto'
+        primaryColor: Colors.black, fontFamily: 'Oxanium'
       ),
       home: MyHomePage(title: 'Drone - Visualização de dados'),
     );
