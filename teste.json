@@ -1,12 +1,5 @@
 [
-    {
-        "temp_0": 1,
-        "indicated_airspeed_0": 2,
-        "true_airspeed_0": 3,
-        "humidity_0": 4,
-        "compass_0": 5,
-        "lat_0": 6,
-        "long_0": 7,
-        "alt_0":  8
-    }
+  {
+    "temp_0": 1,
+  },
 ]
