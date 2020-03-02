@@ -48,27 +48,30 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('v1.0.0', style: TextStyle(color: Colors.white)),
+              child: Column(
+                      children: [Row(children: [Text('v1.0.0', style: TextStyle(color: Colors.white, fontSize: 64))]),
+                                Row(crossAxisAlignment: CrossAxisAlignment.end, children: [Text('\nDesenvolvido por Alcides Mignoso e Luciano\nNeris', style: TextStyle(color: Colors.white, fontSize: 12))])]
+                        ),
               decoration: BoxDecoration(
                 color: Colors.black,
               ),
             ),
             ListTile(
-              title: Text('Leitura'),
+              title: Text('- Leitura'),
               selected: 0 == _selectedIndex,
               onTap: () {
                 _onSelectItem(0);
               },
             ),
             ListTile(
-              title: Text('Gravação'),
+              title: Text('- Gravação'),
               selected: 1 == _selectedIndex,
               onTap: () {
                 _onSelectItem(1);
               },
             ),
             ListTile(
-              title: Text('Ajuda'),
+              title: Text('- Ajuda'),
               selected: 2 == _selectedIndex,
               onTap: () {
                 _onSelectItem(2);

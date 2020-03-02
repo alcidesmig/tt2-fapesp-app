@@ -220,8 +220,7 @@ class SensorsData {
 }
 
 Future<SensorsData> getData() async {
-  final response = await http.get(
-      "https://raw.githubusercontent.com/alcidesmig/tt2-fapesp-app/master/teste.json");
+  final response = await http.get("rasp.local");
 
   if (response.statusCode == 200) {
     // Ok response
