@@ -24,50 +24,17 @@ class SwipeToRefresh extends StatefulWidget {
 }
 
 
-
 class _SwipeToRefreshState extends State<SwipeToRefresh> {
-  SensorsData last_data = SensorsData([
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ],
-    [
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda",
-      "Nenhum valor lido ainda"
-    ]
-  ]);
+  SensorsData data = SensorsData(
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      []);
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
   new GlobalKey<RefreshIndicatorState>();
@@ -79,153 +46,168 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
         .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
   }
 
-  static int cont = 0;
-  List<ListItem> items = List<ListItem>.generate(27, (i) {
-    if (i % 9 == 0) {
-      return HeadingItem("Ponto de coleta: " + (i ~/ 9 + 1).toString());
-    }
-    return MessageItem(desc[cont++ % 8], "Nenhum valor lido ainda");
-  });
-
-
-
-  int cont2 = 0;
-  Widget buildBody(BuildContext context, int index) {
-    final item = items[index];
-    if (item is HeadingItem) {
-      return ListTile(
-        title: Text(
-          item.heading,
-          style: Theme.of(context).textTheme.headline,
-        ),
-      );
-    } else if (item is MessageItem) {
-      print(cont2.toString() + "\n");
-      return ListTile(
-        title: Text(item.sender),
-        subtitle: Text(last_data.values[cont2 % 8][cont2++ ~/ 8]),
-      );
-    }
-  }
-
   //TO DO: refatorar a classe para receber os dados dos 3 pontos como vetores de informações
   // TO DO: colocar botao att https://medium.com/flutterpub/adding-swipe-to-refresh-to-flutter-app-b234534f39a7
   final snackBar = SnackBar(content: Text('Dados atualizados!'));
   Future<Null> _refresh() {
     Scaffold.of(context).showSnackBar(snackBar);
-    return getData().then((_last_data) {
-      this.setState(() => this.last_data = _last_data);
-      print(last_data.values);
-      cont = 0;
-      cont2 = 0;
+
+    return getData().then((_data) {
+      this.setState(() => this.data = _data);
     });
   }
-
+  
   @override
   Widget build(BuildContext context) {
-    cont2 = 0;
     return Scaffold(
         body: RefreshIndicator(
             onRefresh: _refresh,
             key: _refreshIndicatorKey,
-            child: ListView.builder(
-              // Let the ListView know how many items it needs to build.
-              itemCount: items.length,
-              // Provide a builder function. This is where the magic happens.
-              // Convert each item into a widget based on the type of item it is.
-              itemBuilder: (BuildContext context, int index) =>
-                  buildBody(context, index),
-            )),
-      );
+            child: Container(
+                decoration: new BoxDecoration(
+                  color: Colors.black,
+                  image: new DecorationImage(
+                    fit: BoxFit.cover,
+                    colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
+                    image: new ExactAssetImage('img/back.jpg'),
+                  ),
+                ),
+                child: GridView.count(
+                // Create a grid with 2 columns. If you change the scrollDirection to
+                // horizontal, this produces 2 rows.
+                crossAxisCount: 2,
+                // Generate 100 widgets that display their index in the List.
+                children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/thermometer.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.temp + '°C', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        Image(
+                            image: AssetImage('img/compass.png'),
+                            height: 75,
+                            width: 75,
+                        ), Text(
+                          ' ' + data.compass + '°', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                    ]
+                ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/height.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.alt + 'm', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/humidity.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.humidity + '%', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ), // Row
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/pin.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.lat + 'N', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/pin.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.long+ 'S', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/weather.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.indicated_airspeed + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage('img/weather.png'),
+                          height: 75,
+                          width: 75,
+                        ), Text(
+                            ' ' + data.true_airspeed + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        )
+                      ]
+                  ),
+                ]
+          )
+      )));
   }
 
 }
 
 class SensorsData {
+  final String temp,
+      indicated_airspeed,
+      true_airspeed,
+      humidity,
+      compass,
+      lat,
+      long,
+      alt;
   final List<List<String>> values;
 
-  SensorsData(this.values);
+  SensorsData(this.temp, this.indicated_airspeed, this.true_airspeed,
+      this.humidity, this.compass, this.lat, this.long, this.alt, this.values);
+
 
   factory SensorsData.fromJson(Map<String, dynamic> json) {
-    print("FromJson\n");
+    String temp = json['temp'] != null ? json['temp'] : "???";
+    String indicated_airspeed = json['indicated_airspeed'] != null ? json['indicated_airspeed'] : "???";
+    String true_airspeed = json['true_airspeed'] != null ? json['true_airspeed'] : "???";
+    String humidity = json['humidity'] != null ? json['humidity'] : "???";
+    String compass = json['compass'] != null ? json['compass'] : "???";
+    String lat = json['lat'] != null ? json['lat'] : "???";
+    String long = json['long'] != null ? json['long'] : "???";
+    String alt = json['alt'] != null ? json['alt'] : "???";
 
-    String temp_0 =
-    json['temp_0'] != null ? json['temp_0'] : "Nenhum valor lido ainda";
-    String indicated_airspeed_0 = json['indicated_airspeed_0'] != null
-        ? json['indicated_airspeed_0']
-        : "Nenhum valor lido ainda";
-    String true_airspeed_0 = json['true_airspeed_0'] != null
-        ? json['true_airspeed_0']
-        : "Nenhum valor lido ainda";
-    String humidity_0 = json['humidity_0'] != null
-        ? json['humidity_0']
-        : "Nenhum valor lido ainda";
-    String compass_0 = json['compass_0'] != null
-        ? json['compass_0']
-        : "Nenhum valor lido ainda";
-    String lat_0 =
-    json['lat_0'] != null ? json['lat_0'] : "Nenhum valor lido ainda";
-    String long_0 =
-    json['long_0'] != null ? json['long_0'] : "Nenhum valor lido ainda1";
-    String alt_0 =
-    json['alt_0'] != null ? json['alt_0'] : "Nenhum valor lido ainda1";
 
-    String temp_1 =
-    json['temp_1'] != null ? json['temp_1'] : "Nenhum valor lido ainda";
-    String indicated_airspeed_1 = json['indicated_airspeed_1'] != null
-        ? json['indicated_airspeed_1']
-        : "Nenhum valor lido ainda";
-    String true_airspeed_1 = json['true_airspeed_1'] != null
-        ? json['true_airspeed_1']
-        : "Nenhum valor lido ainda";
-    String humidity_1 = json['humidity_1'] != null
-        ? json['humidity_1']
-        : "Nenhum valor lido ainda";
-    String compass_1 = json['compass_1'] != null
-        ? json['compass_1']
-        : "Nenhum valor lido ainda";
-    String lat_1 =
-    json['lat_1'] != null ? json['lat_1'] : "Nenhum valor lido ainda";
-    String long_1 =
-    json['long_1'] != null ? json['long_1'] : "Nenhum valor lido ainda21";
-    String alt_1 =
-    json['alt_1'] != null ? json['alt_1'] : "Nenhum valor lido ainda21";
-
-    String temp_2 =
-    json['temp_2'] != null ? json['temp_2'] : "Nenhum valor lido ainda";
-    String indicated_airspeed_2 = json['indicated_airspeed_2'] != null
-        ? json['indicated_airspeed_2']
-        : "Nenhum valor lido ainda";
-    String true_airspeed_2 = json['true_airspeed_2'] != null
-        ? json['true_airspeed_2']
-        : "Nenhum valor lido ainda";
-    String humidity_2 = json['humidity_2'] != null
-        ? json['humidity_2']
-        : "Nenhum valor lido ainda";
-    String compass_2 = json['compass_2'] != null
-        ? json['compass_2']
-        : "Nenhum valor lido ainda";
-    String lat_2 =
-    json['lat_2'] != null ? json['lat_2'] : "Nenhum valor lido ainda";
-    String long_2 =
-    json['long_2'] != null ? json['long_2'] : "Nenhum valor lido ainda31";
-    String alt_2 =
-    json['alt_2'] != null ? json['alt_2'] : "Nenhum valor lido ainda31";
-
-    var temp = [temp_0, temp_1, temp_2];
-    var indicated_airspeed = [
-      indicated_airspeed_0,
-      indicated_airspeed_1,
-      indicated_airspeed_2
-    ];
-    var true_airspeed = [true_airspeed_0, true_airspeed_1, true_airspeed_2];
-    var humidity = [humidity_0, humidity_1, humidity_2];
-    var compass = [compass_0, compass_1, compass_2];
-    var lat = [lat_0, lat_1, lat_2];
-    var long = [long_0, long_1, long_2];
-    var alt = [alt_0, alt_1, alt_2];
-
-    return SensorsData([
+    return SensorsData(
       temp,
       indicated_airspeed,
       true_airspeed,
@@ -233,8 +215,7 @@ class SensorsData {
       compass,
       lat,
       long,
-      alt
-    ]);
+      alt, []);
   }
 }
 
@@ -250,20 +231,4 @@ Future<SensorsData> getData() async {
     throw Exception('Falha ao carregar JSON');
   }
 }
-// The base class for the different types of items the list can contain.
-abstract class ListItem {}
 
-// A ListItem that contains data to display a heading.
-class HeadingItem implements ListItem {
-  final String heading;
-
-  HeadingItem(this.heading);
-}
-
-// A ListItem that contains data to display a message.
-class MessageItem implements ListItem {
-  final String sender;
-  final String body;
-
-  MessageItem(this.sender, this.body);
-}
