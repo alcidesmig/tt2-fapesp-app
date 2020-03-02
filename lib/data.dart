@@ -110,8 +110,9 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
 
   //TO DO: refatorar a classe para receber os dados dos 3 pontos como vetores de informações
   // TO DO: colocar botao att https://medium.com/flutterpub/adding-swipe-to-refresh-to-flutter-app-b234534f39a7
-
+  final snackBar = SnackBar(content: Text('Dados atualizados!'));
   Future<Null> _refresh() {
+    Scaffold.of(context).showSnackBar(snackBar);
     return getData().then((_last_data) {
       this.setState(() => this.last_data = _last_data);
       print(last_data.values);
