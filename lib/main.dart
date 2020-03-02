@@ -29,7 +29,7 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
   SensorsData last_data = SensorsData([["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"],["Nenhum valor lido ainda","Nenhum valor lido ainda","Nenhum valor lido ainda"]]);
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      new GlobalKey<RefreshIndicatorState>();
+  new GlobalKey<RefreshIndicatorState>();
 
   @override
   void initState() {
@@ -40,13 +40,13 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
 
   static int cont = 0;
   List<ListItem> items = List<ListItem>.generate(
-    27,
-    (i) {
-      if(i % 9 == 0) {
-        return HeadingItem("Ponto de coleta: " + (i ~/ 10 + 1).toString());
+      27,
+          (i) {
+        if(i % 9 == 0) {
+          return HeadingItem("Ponto de coleta: " + (i ~/ 10 + 1).toString());
+        }
+        return MessageItem(desc[cont++ % 8], "Nenhum valor lido ainda");
       }
-      return MessageItem(desc[cont++ % 8], "Nenhum valor lido ainda");
-    }
   );
 
 
@@ -72,15 +72,17 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
     }
   }
 
-   //TO DO: refatorar a classe para receber os dados dos 3 pontos como vetores de informações
-   // TO DO: colocar botao att https://medium.com/flutterpub/adding-swipe-to-refresh-to-flutter-app-b234534f39a7
+  //TO DO: refatorar a classe para receber os dados dos 3 pontos como vetores de informações
+  // TO DO: colocar botao att https://medium.com/flutterpub/adding-swipe-to-refresh-to-flutter-app-b234534f39a7
 
 
   Future<Null> _refresh() {
     return getData().then((_last_data) {
       this.setState(() => this.last_data = _last_data );
       print(last_data.values);
+      cont = 0;
       cont2 = 0;
+
     });
   }
 
@@ -89,21 +91,21 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
     return MaterialApp(
       title: title,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: RefreshIndicator(
-          onRefresh: _refresh,
-          key: _refreshIndicatorKey,
-        child: ListView.builder(
-          // Let the ListView know how many items it needs to build.
-          itemCount: items.length,
-          // Provide a builder function. This is where the magic happens.
-          // Convert each item into a widget based on the type of item it is.
-          itemBuilder: (BuildContext context, int index) =>
-              buildBody(context, index),
-        ),
-        )
+          appBar: AppBar(
+            title: Text(title),
+          ),
+          body: RefreshIndicator(
+            onRefresh: _refresh,
+            key: _refreshIndicatorKey,
+            child: ListView.builder(
+              // Let the ListView know how many items it needs to build.
+              itemCount: items.length,
+              // Provide a builder function. This is where the magic happens.
+              // Convert each item into a widget based on the type of item it is.
+              itemBuilder: (BuildContext context, int index) =>
+                  buildBody(context, index),
+            ),
+          )
       ),
     );
   }
@@ -113,10 +115,11 @@ class SensorsData {
 
   final List<List<String>> values;
 
-
   SensorsData(this.values);
 
   factory SensorsData.fromJson(Map<String, dynamic> json) {
+    print("FromJson\n");
+
     String temp_0 = json['temp_0'] != null ? json['temp_0'] : "Nenhum valor lido ainda";
     String indicated_airspeed_0 = json['indicated_airspeed_0'] != null ? json['indicated_airspeed_0'] : "Nenhum valor lido ainda";
     String true_airspeed_0 = json['true_airspeed_0'] != null ? json['true_airspeed_0'] : "Nenhum valor lido ainda";
@@ -155,19 +158,25 @@ class SensorsData {
 
 
     return SensorsData([temp, indicated_airspeed, true_airspeed, humidity,
-          compass, lat, long, alt]);
+      compass, lat, long, alt]);
   }
 }
 
 Future<SensorsData> getData() async {
   final response = await http.get("https://raw.githubusercontent.com/alcidesmig/tt2-fapesp-app/master/teste.json");
-  final responseJson = json.decode(response.body)[0];
-  print(responseJson);
-  return SensorsData.fromJson(responseJson);
+
+  if (response.statusCode == 200) { // Ok response
+    final responseJson = json.decode(response.body);
+    return SensorsData.fromJson(responseJson);
+  } else {
+    throw Exception('Falha ao carregar JSON');
+  }
+
 }
 
-void main() => runApp(SwipeToRefresh());
-
+void main() {
+  runApp(SwipeToRefresh());
+}
 // The base class for the different types of items the list can contain.
 abstract class ListItem {}
 
@@ -177,36 +186,6 @@ class HeadingItem implements ListItem {
 
   HeadingItem(this.heading);
 }
-
-/*
-
-class HomePage extends StatefulWidget {
-  @override
-  HomePageState createState() => new HomePageState();
-}
-
-class HomePageState extends State<HomePage> {
-  List data;
-
-  Future<String> getData() async {
-    var response = await http.get(
-        Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
-        headers: {"Accept": "application/json"});
-
-    this.setState(() {
-      data = json.decode(response.body);
-    });
-  }
-
-  @override
-  void initState() {
-    this.getData();
-  }
-
-}
-
- */
-
 
 // A ListItem that contains data to display a message.
 class MessageItem implements ListItem {
