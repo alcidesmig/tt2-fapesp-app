@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import './data.dart';
+import './write.dart';
+import './help.dart';
 
 void main() => runApp(MyApp());
-
+//TODO: fonte
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Exemplo Drawer',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue, fontFamily: 'Roboto-Bold'
       ),
       home: MyHomePage(title: 'Drone - Visualização de dados'),
     );
@@ -65,6 +67,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 _onSelectItem(1);
               },
             ),
+            ListTile(
+              title: Text('Ajuda'),
+              selected: 2 == _selectedIndex,
+              onTap: () {
+                _onSelectItem(2);
+              },
+            ),
           ],
         ),
       ),
@@ -77,7 +86,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         return SwipeToRefresh();
       case 1:
-        return SwipeToRefresh();
+        return WriteData();
+      case 2:
+        return Helper();
     }
   }
 
