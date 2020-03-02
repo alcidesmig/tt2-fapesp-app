@@ -10,7 +10,7 @@ import './write.dart';
 import './help.dart';
 
 void main() => runApp(MyApp());
-//TODO: fonte
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black, fontFamily: 'Oxanium'
       ),
-      home: MyHomePage(title: 'Drone - Visualização de dados'),
+      home: MyHomePage(title: 'Drone - visualização de dados'),
     );
   }
 }
@@ -48,20 +48,20 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Cabeçalho'),
+              child: Text('v1.0.0', style: TextStyle(color: Colors.white)),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.black,
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Leitura'),
               selected: 0 == _selectedIndex,
               onTap: () {
                 _onSelectItem(0);
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('Gravação'),
               selected: 1 == _selectedIndex,
               onTap: () {
                 _onSelectItem(1);
