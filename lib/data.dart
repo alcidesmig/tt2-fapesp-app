@@ -73,7 +73,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
       this.setState(() => this.data = _data);
     });
   }
-  
+
+  int min(int x, int y) {
+    return x < y ? x : y;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,11 +109,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [Text(
-                                      ' ' + data.temp_1 + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                      ' ' + data.temp_1.substring(0, min(data.temp_1.length, 5)) + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
                                   ), Text(
-                                      ' ' + data.temp_2 + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                      ' ' + data.temp_2.substring(0, min(data.temp_2.length, 5)) + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
                                   ), Text(
-                                      ' ' + data.temp_3 + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                      ' ' + data.temp_3.substring(0, min(data.temp_3.length, 5)) + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
                                   )]
                             )
                       ]
@@ -143,11 +147,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Text(
-                                ' ' + data.alt_1 + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.alt_1.substring(0, min(data.alt_1.length, 5)) + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.alt_2 + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.alt_2.substring(0, min(data.alt_2.length, 5)) + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.alt_3 + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.alt_3.substring(0, min(data.alt_3.length, 5)) + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             )]
                         )
                       ]
@@ -162,11 +166,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Text(
-                                ' ' + data.humidity_1 + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.humidity_1.substring(0, min(data.humidity_1.length, 5)) + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.humidity_2 + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.humidity_2.substring(0, min(data.humidity_2.length, 5)) + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.humidity_3 + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.humidity_3.substring(0, min(data.humidity_3.length, 5)) + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             )]
                         )
                       ]
@@ -181,11 +185,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Text(
-                                ' ' + data.lat_1 + 'N', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.lat_1.substring(0, min(data.lat_1.length, 5)) + 'N', style: TextStyle(color: Colors.yellow, fontSize: 22)
                             ), Text(
-                                ' ' + data.lat_2 + 'N', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.lat_2.substring(0, min(data.lat_2.length, 5)) + 'N', style: TextStyle(color: Colors.yellow, fontSize: 22)
                             ), Text(
-                                ' ' + data.lat_3 + 'N', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.lat_3.substring(0, min(data.lat_3.length, 5)) + 'N', style: TextStyle(color: Colors.yellow, fontSize: 22)
                             )]
                         )
                       ]
@@ -200,11 +204,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Text(
-                                ' ' + data.long_1 + 'E', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.long_1.substring(0, min(data.long_1.length, 5)) + 'E', style: TextStyle(color: Colors.yellow, fontSize: 22)
                             ), Text(
-                                ' ' + data.long_2 + 'E', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.long_2.substring(0, min(data.long_2.length, 5)) + 'E', style: TextStyle(color: Colors.yellow, fontSize: 22)
                             ), Text(
-                                ' ' + data.long_3 + 'E', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.long_3.substring(0, min(data.long_3.length, 5)) + 'E', style: TextStyle(color: Colors.yellow, fontSize: 22)
                             )]
                         )
                       ]
@@ -219,11 +223,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Text(
-                                ' ' + data.indicated_airspeed_1 + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.indicated_airspeed_1.substring(0, min(data.indicated_airspeed_1.length, 5)) + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.indicated_airspeed_2 + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.indicated_airspeed_2.substring(0, min(data.indicated_airspeed_2.length, 5)) + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.indicated_airspeed_3 + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.indicated_airspeed_3.substring(0, min(data.indicated_airspeed_3.length, 5)) + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             )]
                         )
                       ]
@@ -238,11 +242,11 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                         ), Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Text(
-                                ' ' + data.true_airspeed_1 + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.true_airspeed_1.substring(0, min(data.true_airspeed_1.length, 5)) + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.true_airspeed_2 + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.true_airspeed_2.substring(0, min(data.true_airspeed_2.length, 5)) + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             ), Text(
-                                ' ' + data.true_airspeed_3 + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                ' ' + data.true_airspeed_3.substring(0, min(data.true_airspeed_3.length, 5)) + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
                             )]
                         )
                       ]

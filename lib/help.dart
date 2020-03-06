@@ -51,10 +51,11 @@ class _Helper extends State<Helper> {
               size: 128.0,
             ),
             Center(child: Text("\n\n\n  Como utilizar?\n"
-                "  1. Conecte-se a rede Wi-fi de SSID: \"rasp\";\n"
+                "  1. Conecte-se a rede Wi-fi de SSID: \"raspberry\" e senha \"raspberry\";\n"
                 "  2. Inicie a missão no drone;\n"
                 "  3. Aguarde o drone chegar no \"waypoint\" em questão;\n"
-                "  4. Arraste para baixo na tela de dados para atualizar os dados.",
+                "  4. Arraste para baixo na tela de dados para atualizar os dados."
+                "  Obs: os dados estão ordenados de acordo com as alturas 2, 5 e 10m, respectivamente.",
                   style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Oxanium',
