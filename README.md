@@ -1,6 +1,6 @@
 # drone_app
 
-Flutter app for provide sensors data of a drone publishing JSON in http:&#x2F;&#x2F;py.local:8080
+Flutter app for provide sensors data of a drone publishing JSON in http:&#x2F;&#x2F;py.local:8080.
 
 ## Preview
 
