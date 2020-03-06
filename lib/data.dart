@@ -26,6 +26,23 @@ class SwipeToRefresh extends StatefulWidget {
 
 class _SwipeToRefreshState extends State<SwipeToRefresh> {
   SensorsData data = SensorsData(
+      "-1",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
+      "???",
       "???",
       "???",
       "???",
@@ -85,9 +102,16 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/thermometer.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.temp + '°C', style: TextStyle(color: Colors.yellow, fontSize: 32)
-                        )
+                        ), Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text(
+                                      ' ' + data.temp_1 + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                  ), Text(
+                                      ' ' + data.temp_2 + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                  ), Text(
+                                      ' ' + data.temp_3 + '°C', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                                  )]
+                            )
                       ]
                   ),
                 Row(
@@ -97,9 +121,16 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                             image: AssetImage('img/compass.png'),
                             height: 75,
                             width: 75,
-                        ), Text(
-                          ' ' + data.compass + '°', style: TextStyle(color: Colors.yellow, fontSize: 32)
-                        )
+                        ), Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text(
+                              ' ' + data.compass_1 + '°', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                          ), Text(
+                              ' ' + data.compass_2 + '°', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                          ), Text(
+                              ' ' + data.compass_3 + '°', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                          )]
+                      )
                     ]
                 ),
                   Row(
@@ -109,8 +140,15 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/height.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.alt + 'm', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        ), Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text(
+                                ' ' + data.alt_1 + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.alt_2 + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.alt_3 + 'm', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            )]
                         )
                       ]
                   ),
@@ -121,8 +159,15 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/humidity.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.humidity + '%', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        ), Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text(
+                                ' ' + data.humidity_1 + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.humidity_2 + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.humidity_3 + '%', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            )]
                         )
                       ]
                   ), // Row
@@ -133,8 +178,15 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/pin.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.lat + 'N', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        ), Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text(
+                                ' ' + data.lat_1 + 'N', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.lat_2 + 'N', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.lat_3 + 'N', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            )]
                         )
                       ]
                   ),
@@ -145,8 +197,15 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/pin.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.long+ 'S', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        ), Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text(
+                                ' ' + data.long_1 + 'E', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.long_2 + 'E', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.long_3 + 'E', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            )]
                         )
                       ]
                   ),
@@ -157,8 +216,15 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/weather.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.indicated_airspeed + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        ), Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text(
+                                ' ' + data.indicated_airspeed_1 + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.indicated_airspeed_2 + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.indicated_airspeed_3 + '(i)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            )]
                         )
                       ]
                   ),
@@ -169,8 +235,15 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
                           image: AssetImage('img/weather.png'),
                           height: 75,
                           width: 75,
-                        ), Text(
-                            ' ' + data.true_airspeed + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 32)
+                        ), Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text(
+                                ' ' + data.true_airspeed_1 + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.true_airspeed_2 + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            ), Text(
+                                ' ' + data.true_airspeed_3 + '(t)', style: TextStyle(color: Colors.yellow, fontSize: 28)
+                            )]
                         )
                       ]
                   ),
@@ -181,41 +254,101 @@ class _SwipeToRefreshState extends State<SwipeToRefresh> {
 
 }
 
-class SensorsData {
-  final String temp,
-      indicated_airspeed,
-      true_airspeed,
-      humidity,
-      compass,
-      lat,
-      long,
-      alt;
+class SensorsData { // #TODO: transformar dados em vetores
+  final String id_coleta,
+      temp_1,
+      indicated_airspeed_1,
+      true_airspeed_1,
+      humidity_1,
+      compass_1,
+      lat_1,
+      long_1,
+      alt_1,
+      temp_2,
+      indicated_airspeed_2,
+      true_airspeed_2,
+      humidity_2,
+      compass_2,
+      lat_2,
+      long_2,
+      alt_2,
+      temp_3,
+      indicated_airspeed_3,
+      true_airspeed_3,
+      humidity_3,
+      compass_3,
+      lat_3,
+      long_3,
+      alt_3;
   final List<List<String>> values;
 
-  SensorsData(this.temp, this.indicated_airspeed, this.true_airspeed,
-      this.humidity, this.compass, this.lat, this.long, this.alt, this.values);
+  SensorsData(this.id_coleta,
+      this.temp_1, this.indicated_airspeed_1, this.true_airspeed_1,
+      this.humidity_1, this.compass_1, this.lat_1, this.long_1, this.alt_1,
+      this.temp_2, this.indicated_airspeed_2, this.true_airspeed_2,
+      this.humidity_2, this.compass_2, this.lat_2, this.long_2, this.alt_2,
+      this.temp_3, this.indicated_airspeed_3, this.true_airspeed_3,
+      this.humidity_3, this.compass_3, this.lat_3, this.long_3, this.alt_3, this.values);
 
 
   factory SensorsData.fromJson(Map<String, dynamic> json) {
-    String temp = json['temp'] != null ? json['temp'] : "???";
-    String indicated_airspeed = json['indicated_airspeed'] != null ? json['indicated_airspeed'] : "???";
-    String true_airspeed = json['true_airspeed'] != null ? json['true_airspeed'] : "???";
-    String humidity = json['humidity'] != null ? json['humidity'] : "???";
-    String compass = json['compass'] != null ? json['compass'] : "???";
-    String lat = json['lat'] != null ? json['lat'] : "???";
-    String long = json['long'] != null ? json['long'] : "???";
-    String alt = json['alt'] != null ? json['alt'] : "???";
+    String id_coleta = json['id_coleta'] != null ? json['id_coleta'] : "???";
+
+    String temp_1 = json['temp_1'] != null ? json['temp_1'] : "???";
+    String indicated_airspeed_1 = json['indicated_airspeed_1'] != null ? json['indicated_airspeed_1'] : "???";
+    String true_airspeed_1 = json['true_airspeed_1'] != null ? json['true_airspeed_1'] : "???";
+    String humidity_1 = json['humidity_1'] != null ? json['humidity_1'] : "???";
+    String compass_1 = json['compass_1'] != null ? json['compass_1'] : "???";
+    String lat_1 = json['lat_1'] != null ? json['lat_1'] : "???";
+    String long_1 = json['long_1'] != null ? json['long_1'] : "???";
+    String alt_1 = json['alt_1'] != null ? json['alt_1'] : "???";
+
+    String temp_2 = json['temp_2'] != null ? json['temp_2'] : "???";
+    String indicated_airspeed_2 = json['indicated_airspeed_2'] != null ? json['indicated_airspeed_2'] : "???";
+    String true_airspeed_2 = json['true_airspeed_2'] != null ? json['true_airspeed_2'] : "???";
+    String humidity_2 = json['humidity_2'] != null ? json['humidity_2'] : "???";
+    String compass_2 = json['compass_2'] != null ? json['compass_2'] : "???";
+    String lat_2 = json['lat_2'] != null ? json['lat_2'] : "???";
+    String long_2= json['long_2'] != null ? json['long_2'] : "???";
+    String alt_2 = json['alt_2'] != null ? json['alt_2'] : "???";
+
+    String temp_3 = json['temp_3'] != null ? json['temp_3'] : "???";
+    String indicated_airspeed_3 = json['indicated_airspeed_3'] != null ? json['indicated_airspeed_3'] : "???";
+    String true_airspeed_3 = json['true_airspeed_3'] != null ? json['true_airspeed_3'] : "???";
+    String humidity_3 = json['humidity_3'] != null ? json['humidity_3'] : "???";
+    String compass_3 = json['compass_3'] != null ? json['compass_3'] : "???";
+    String lat_3 = json['lat_3'] != null ? json['lat_3'] : "???";
+    String long_3= json['long_3'] != null ? json['long_3'] : "???";
+    String alt_3 = json['alt_3'] != null ? json['alt_3'] : "???";
 
 
     return SensorsData(
-      temp,
-      indicated_airspeed,
-      true_airspeed,
-      humidity,
-      compass,
-      lat,
-      long,
-      alt, []);
+        id_coleta,
+        temp_1,
+        indicated_airspeed_1,
+        true_airspeed_1,
+        humidity_1,
+        compass_1,
+        lat_1,
+        long_1,
+        alt_2,
+        temp_2,
+        indicated_airspeed_2,
+        true_airspeed_2,
+        humidity_2,
+        compass_2,
+        lat_2,
+        long_2,
+        alt_2,
+        temp_3,
+        indicated_airspeed_3,
+        true_airspeed_3,
+        humidity_3,
+        compass_3,
+        lat_3,
+        long_3,
+        alt_3,
+        []);
   }
 }
 
